@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container pt-24 md:pt-14 mx-auto flex flex-wrap flex-col md:flex-row items-center justify-center">
+    <form id="book-edit-form" class="bg-gray-900 opacity-75 shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4 w-3/5" method="post" action="/editar/{{ book.id }}" enctype="multipart/form-data">
+        <h1
+            class="my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight text-center md:text-center uppercase">
+            <span
+                class="bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-500 uppercase">
+                Edite seu livro
+            </span>
+        </h1>
+        <div class="main-content-form overflow-auto px-4" style="max-height: 760px;">
+        <div class=" mb-4">
+            <label class="block text-blue-300 py-2 font-bold mb-2" for="emailaddress">
+                Título
+            </label>
+            <input
+                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover: duration-300 ease-in-out"
+                name='title' id="title" type="text" placeholder="Digite o nome do livro" value="{{ book.titulo }}" required />
+            <div id="title-error"></div>
+        </div>
+        <div class="mb-4">
+            <label class="block text-blue-300 py-2 font-bold mb-2" for="emailaddress">
+                Autor(es)
+            </label>
+            <input
+                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover: duration-300 ease-in-out"
+                name='author' id="author" type="text" placeholder="Digite o autor(a)" value="{{ book.autor }}" required />
+        </div>
+        <div class="mb-4">
+            <label class="block text-blue-300 py-2 font-bold mb-2" for="emailaddress">
+                Editora
+            </label>
+            <input
+                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover: duration-300 ease-in-out"
+                name='company' id="company" type="text" placeholder="Digite a editora" value="{{ book.editora }}" required />
+        </div>
+        <div class="mb-4">
+            <label class="block text-blue-300 py-2 font-bold mb-2" for="emailaddress">
+                Idioma
+            </label>
+            <input
+                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover: duration-300 ease-in-out"
+                name='language' id="language" type="text" placeholder="Digite o idioma" value="{{ book.idioma }}" required />
+        </div>
+        <div class="mb-4">
+            <label class="block text-blue-300 py-2 font-bold mb-2" for="emailaddress">
+                Sinopse
+            </label>
+            <textarea
+                class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover: duration-300 ease-in-out"
+                name='description' id="description" type="text" placeholder="Digite uma sinopse (opcional)" maxlength="250" /></textarea>
+        </div>
+        <div class="mb-4">
+            <label class="block text-blue-300 py-2 font-bold mb-2" for="emailaddress">
+                Imagem da capa
+            </label>
+            <input class="block w-auto text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file" name="image" required>
+        </div>
+
+        <div class="mb-4 mt-4">
+            <div class="flex items-center justify-center pt-4">
+                <button
+                    class="bg-gradient-to-r from-purple-800 to-green-500 hover:from-pink-500 hover:to-green-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover: duration-300 ease-in-out place-content-center w-1/5"
+                    type="submit">
+                    Editar
+                </button>
+            </div>
+        </div>
+</div>
+</form>
+</div>
+{% endblock %}

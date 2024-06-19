@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<!--Main-->
+<div class="container pt-24 md:pt-36 mx-auto flex flex-wrap flex-col md:flex-row items-center h-4/5">
+    <!--Left Col-->
+    {% if user %}
+      <h1>AAAAAAAAAAAAAAAAAAAAAAAA</h1>
+    {% endif %}
+    <div class="flex flex-col w-full xl:w-2/5 justify-center overflow-y-hidden text-center items-center">
+      <h1 class="my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight text-center uppercase">
+        Registre seu
+        <span class="bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-500 uppercase">
+          acervo
+        </span>
+        agora!
+      </h1>
+      <form action="/cadastro" method="get">
+        <div class="flex items-center justify-between pt-4">
+          <button
+            class="bg-gradient-to-r uppercase from-purple-800 to-green-500 hover:from-pink-500 hover:to-green-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
+            type="submit">
+            Adicionar um livro
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!--Right Col-->
+    <div class="w-full xl:w-3/5 p-12 overflow-hidden" style="height: 570px;">
+      <div class="w-full h-full bg-transparent overflow-y-auto flex flex-col gap-4">
+        {% for book in books %}
+        <figure class="md:flex bg-slate-100 rounded-xl p-8 md:p-0 dark:bg-slate-800">
+          {% if book.imagem %}
+          <img class="w-24 h-24 md:w-48 md:h-auto md:rounded-none rounded-full"
+            src="/imagem/{{ book.id }}"
+             alt="" width="384" height="512">
+          
+          {% else %}
+          <img class="w-24 h-24 md:w-48 md:h-auto md:rounded-none rounded-full"
+            src="https://marketplace.canva.com/EAFq91U_RUs/1/0/1003w/canva-capa-de-livro-de-fantasia-elegante-verde-e-bege-awJX91ybn9w.jpg"
+            alt="" width="384" height="512">
+          {% endif %}
+          <div class="pt-6 md:p-8 text-center md:text-left space-y-4" style="max-width: 634px; width: 634px;">
+            <div class="text-sky-500 dark:text-sky-400 text-center">
+              {{book.titulo}}
+            </div>
+            <blockquote class="whitespace-normal break-words">
+              <p class="text-lg font-medium overflow-auto" style="max-height: 100px;">
+                {{ book.sinopse }}
+              </p>
+            </blockquote>
+            <figcaption class="font-medium flex items-center justify-between" style="height: 70px;">
+              <div class="flex-1 text-left">
+                <div class="text-sky-500 dark:text-sky-400">
+                  {{book.autor}}
+                </div>
+                <div class="text-slate-700 dark:text-slate-500">
+                  {{book.editora}}
+                </div>
+              </div>
+              <div class="ml-4 mr-4 flex flex-row-reverse gap-4">
+
+                <form action="/deletar/{{ book.id }}" method="post"
+                  onsubmit="return confirm('Tem certeza que deseja deletar este livro?');">
+                  <button class="button-actions bg-red-600 hover:bg-red-800" type="submit">
+                    <svg viewBox="0 0 448 512" class="svgIcon">
+                      <path
+                        d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z">
+                      </path>
+                    </svg>
+                  </button>
+                </form>
+
+                <form action="/editar/{{ book.id }}">
+                  <button class="button-actions edit-button bg-green-600 hover:bg-green-800" type="submit">
+                    <svg class="svgIcon edit-svg " viewBox="0 0 512 512">
+                      <path
+                        d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z">
+                      </path>
+                    </svg>
+                  </button>
+                </form>
+              </div>
+            </figcaption>
+          </div>
+        </figure>
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
