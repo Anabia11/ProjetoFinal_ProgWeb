@@ -92,7 +92,7 @@ Este é o README do projeto de API web **BookSpace**, desenvolvido para a discip
 1. **Clone o projeto**
 
    ```bash
-   git clone https://github.com/oBrunoz/ProjetoFinal_ProgWeb.git
+   git clone https://github.com/Anabia11/ProjetoFinal_ProgWeb.git
    ```
 
 2. **Crie um ambiente virtual**
